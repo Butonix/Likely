@@ -42,6 +42,28 @@
     visibility: inherit;
 }
 
+// Colors
+colorize(button, color) {
+    .likely__widget_{button} {
+        background: color;
+        
+        &:hover, &.active {
+            background: mix(#000,color,15%);
+        }
+    }
+}
+
+colorize('twitter', #31adf4);
+colorize('facebook', #304591);
+colorize('vkontakte', #527397);
+colorize('gplus', #d94435);
+colorize('odnoklassniki', #f2812e);
+colorize('pocket', #dc3d50);
+colorize('telegram', #2ca5e0);
+colorize('whatsapp', #0f9d58);
+colorize('viber', #7b519d);
+colorize('more', #ce8104);
+
 // Default styles
 .likely:not(.likely_custom) {
     text-align: left;
@@ -76,7 +98,7 @@
             color: #fff;
             cursor: pointer;
             overflow hidden;
-            margin-bottom: 6px;
+            margin-bottom: 12px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
             visibility: hidden;
             opacity: 0;
@@ -300,7 +322,7 @@
 .likely_some:not(.likely_custom) {
     line-height: 32px;
     left: 15px;
-    bottom: 9px;
+    bottom: 3px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -316,8 +338,8 @@
     .likely {
         &__widget {
             display: inline-block;
-            width: 23%;
-            margin-right: 2%;
+            width: 21.5%;
+            margin-right: 3.5%;
             height: 32px;
             border-radius: 5px;
             visibility: hidden;
@@ -355,7 +377,7 @@
             
             &_more {
                 position absolute;
-                bottom: 6px;
+                bottom: 12px;
                 right: 0;
                 visibility: visible;
                 opacity: 1;
@@ -366,7 +388,27 @@
                     position relative;
                     bottom: 0;
                 }
+                
+                .likely__icon {
+                    -webkit-transition: all .1s ease-in;
+                    transition: all .1s ease-in;
+                    
+                    &:after {
+                        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgb(255,255,255)' viewBox='19 32 16 16'><path d='M34.02 38.997h-6.017V32.98h-2.006v6.017H19.98v2.007h6.017v6.017h2.006v-6.016h6.018'/></svg>");
+                        display: inline-block;
+                        height: 16px;
+                        vertical-align: -4px;
+                    }
+                }
+                
+                &.active {       
+                    .likely__icon {
+                        transform: rotate(45deg);
+                    }
+                }
+            
             }
+            
         }
         
         &__icon {
@@ -384,6 +426,12 @@
                     width: 14px;
                     height: 14px;
                     vertical-align: -3px;
+                }
+            }
+            
+            &_more {
+                svg {
+                    display: none;
                 }
             }
         }
@@ -407,6 +455,8 @@
         }
     }
     
+    colorize('more', #868686);
+    
 } // .likely_some
     
 .likely_feed:not(.likely_custom) {
@@ -421,32 +471,10 @@
     }
 }
 
-.likely_secondary, .likely_some.likely_secondary:not(.likely_custom)  {
+.likely_secondary, .likely_some.likely_secondary:not(.likely_custom) {
     display: none;
     
     @media all and (min-width: 760px){
         display: inline-block;
     }
 }
-
-// Colors
-colorize(button, color) {
-    .likely__widget_{button} {
-        background: color;
-        
-        &:hover, &.active {
-            background: mix(#000,color,15%);
-        }
-    }
-}
-
-colorize('twitter', #31adf4);
-colorize('facebook', #304591);
-colorize('vkontakte', #527397);
-colorize('gplus', #d94435);
-colorize('odnoklassniki', #f2812e);
-colorize('pocket', #dc3d50);
-colorize('telegram', #2ca5e0);
-colorize('whatsapp', #0f9d58);
-colorize('viber', #7b519d);
-colorize('more', #ce8104);
