@@ -18,7 +18,7 @@
 
 // Hide buttons until they are loaded
 .likely {
-    opacity: 0;
+    // opacity: 0;
     font-size: 0;
     
     &__widget {
@@ -50,6 +50,10 @@ colorize(button, color) {
         &:hover, &.active {
             background: mix(#000,color,15%);
         }
+    }
+    
+    .likely:not(.likely_ready) > div.{button} {
+        background: color;
     }
 }
 
@@ -243,10 +247,6 @@ colorize('more', #ce8104);
             display: none;
             margin: 0;
             outline: 0;
-            
-            @media all and (min-width: 760px){
-                display: inline-block;
-            }
         }
 
         &__button {
@@ -254,6 +254,10 @@ colorize('more', #ce8104);
             cursor: pointer;
             user-select: none;
             padding-right: 6px;
+            
+            @media all and (min-width: 760px){
+                display: inline-block;
+            }
         }
 
         &__counter {
@@ -262,10 +266,7 @@ colorize('more', #ce8104);
             font-size: 11px;
             opacity: .5;
             padding-right: 6px;
-            
-            &_empty {
-                display: none;
-            }
+            display: none;
         }
 
         &__widget,
@@ -293,13 +294,56 @@ colorize('more', #ce8104);
         }
     }
     
+    // placeholders while loading
+    @media all and (min-width: 760px){
+        
+        &:not(.likely_visible) > div:not(.likely__widget) {
+            text-indent: 200%;
+            padding-left: 22px;
+            padding-right: 6px;
+            text-align: center;
+            position: relative;
+            white-space: nowrap;
+            font-size: 12px;
+            color: #fff;
+            cursor: default;
+            pointer-events: none;
+            overflow hidden;
+            display: inline-block;
+            height: 20px;
+            border-radius: 3px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-right: 4px;
+            visibility: visible;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+            
+            &:empty {
+                padding-right: 0;
+            }
+            
+            &.telegram, &.whatsapp, &.viber, &.more {
+                visibility: hidden;
+                opacity: 0;
+                display: none;
+            }
+        }
+        
+    }
+    
 } // .likely:not(.likely_custom)
     
 .likely_ready:not(.likely_custom) {
     
     .likely__counter {
         @media all and (min-width: 760px){
-            display: inline-block;
+            
+            &:not(.likely__counter_empty){
+                display: inline-block;
+            }
             
             &_empty {
                 display: none;
