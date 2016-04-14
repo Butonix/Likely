@@ -1,525 +1,292 @@
-// General
-.likely {
-    vertical-align: middle;
-}
+// Variables
+$likely-font-size = 12px
 
-.likely,
-.likely__widget {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    text-indent: 0 !important;
-    list-style: none !important;
-    font-weight: normal;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-}
+$likely-mobile-padding = 15px
 
-// Hide buttons until they are loaded
-.likely {
-    // opacity: 0;
-    font-size: 0;
+$button-size-mobile = 32px
+$button-size-desktop = 20px
+
+$icon-size-mobile = 16px
+$icon-size-desktop = 12px
+
+$button-padding-mobile = 8px
+$button-padding-desktop = 6px
+
+$button-margin-mobile = 6px
+$button-margin-desktop = 2px
+
+$button-radius-mobile = 3px
+$button-radius-desktop = 2px
+
+$mq-desktop = '(min-width: 760px)'
+$mq-mobile = '(max-width: 759px)'
+
+// Default skin
+.likely:not(.likely--custom)
+    box-sizing border-box
+    display flex
+    flex-wrap wrap-reverse
+    font-size $likely-font-size
+    width 100%
+    height $button-size-mobile + $likely-mobile-padding
+    padding 0 ($likely-mobile-padding - $button-margin-mobile) ($likely-mobile-padding - $button-margin-mobile)
+    position fixed
+    bottom 0
+    left 0
     
-    &__widget {
-        font-size: 1rem;
-        cursor: pointer;
-    }
-}
-
-.likely_visible {
-    opacity: 1;
-    -webkit-transition: opacity .1s ease-in;
-    transition: opacity .1s ease-in;
-}
-
-.likely > * {
-    display: inline-block;
-    visibility: hidden;
-}
-
-.likely_visible > * {
-    visibility: inherit;
-}
-
-// Colors
-colorize(button, color) {
-    .likely__widget_{button} {
-        background: color;
-        
-        &:hover, &.active {
-            background: mix(#000,color,15%);
-        }
-    }
+    @media $mq-desktop
+        flex-wrap wrap
+        position relative
+        bottom auto
+        height auto
+        padding 0
     
-    .likely:not(.likely_ready) > div.{button} {
-        background: color;
-    }
-}
-
-colorize('twitter', #31adf4);
-colorize('facebook', #304591);
-colorize('vkontakte', #527397);
-colorize('gplus', #d94435);
-colorize('odnoklassniki', #f2812e);
-colorize('pocket', #dc3d50);
-colorize('telegram', #2ca5e0);
-colorize('whatsapp', #0f9d58);
-colorize('viber', #7b519d);
-colorize('more', #ce8104);
-
-// Default styles
-.likely:not(.likely_custom) {
-    text-align: left;
-    line-height: 42px;
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    z-index: 1000;
+    *
+        box-sizing border-box
     
-    @media all and (min-width: 760px){
-        line-height: 20px;
-        position: relative;
-        bottom: 0;
-        right: 0;
-        z-index: auto;
-    }
-
-}
-    
-.likely:not(.likely_custom) {
-    
-    .likely {
-        
-        &__widget {
-            display: block;
-            text-align: center;
-            position: relative;
-            white-space: nowrap;
-            border-radius: 42px;
-            height: 42px;
-            font-size: 12px;
-            color: #fff;
-            cursor: pointer;
-            overflow hidden;
-            margin-bottom: 12px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
-            visibility: hidden;
-            opacity: 0;
-            -webkit-transform: translateY(6px);
-                    transform: translateY(6px);
-            -webkit-transition-duration: 0.14s;
-                    transition-duration: 0.14s;
-            -webkit-transition-timing-function: ease;
-                    transition-timing-function: ease;
-            -webkit-transition-property: background, transform, opacity, visibility;
-                    transition-property: background, transform, opacity, visibility;
-            -webkit-user-select: none;
-               -moz-user-select: none;
-                -ms-user-select: none;
-                    user-select: none;
+    .likely
+        &__widget
+            display flex
+            justify-content center
+            font-size 1em
+            color #fff
+            min-width $button-size-mobile
+            width 'calc(%s - %s)' % (25% $button-margin-mobile*2)
+            margin $button-margin-mobile
+            height $button-size-mobile
+            line-height $button-size-mobile
+            border-radius $button-radius-mobile
+            user-select none
+            overflow hidden
+            transition-duration 0.08s
+            transition-timing-function ease-in-out
+            transition-property all
             
-            @media all and (min-width: 760px){
-                display: inline-block;
-                height: 20px;
-                border-radius: 3px;
-                margin-top: 2px;
-                margin-bottom: 2px;
-                margin-right: 4px;
-                box-shadow: none;
-                visibility: visible;
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
-                -webkit-transition-property: background;
-                        transition-property: background;
-            }
+            @media $mq-mobile
+                &:nth-child(n + 4):not(.likely__widget--more)
+                    order 2
+                    visibility hidden
+                    opacity 0
+                    transform translateY($button-margin-mobile)
+                                    
+                &--more
+                    order 1
             
-            &:last-child {
-                margin-bottom: 0;
+            @media $mq-desktop
+                min-width $button-size-desktop
+                width auto
+                height $button-size-desktop
+                margin $button-margin-desktop
+                line-height unit(round(($button-size-desktop/$likely-font-size), 3), '')
+                border-radius $button-radius-desktop
+                transition-property background
                 
-                @media all and (min-width: 760px){
-                    margin-bottom: 2px;
-                    margin-right: 0;
-                }
-            }
-            
-            &_pocket {
-                display: none;
+                &:first-child
+                    margin-left 0
                 
-                @media all and (min-width: 760px){
-                    display: inline-block;
-                }
-            }
-            
-            &_telegram, &_whatsapp, &_viber {
-                @media all and (min-width: 760px){
-                    display: none;
-                }
-            }
-            
-            &_more {
-                visibility: visible;
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
+                &:last-child
+                    margin-right 0
                 
-                @media all and (min-width: 760px){
-                    display: none;
-                }
-            }
+                &--telegram, &--whatsapp, &--viber, &--more
+                    display none
             
-        } // &__widget
+            &--more
+                .likely__icon
+                    transition all 0.08s ease-in-out
+                
+                &.active
+                    .likely__icon
+                        transform rotate(45deg)
         
-        &__icon {
-            display: inline-block;
-            width: 42px;
-            height: 42px;
+        &__button
+            display none
+            padding-right $button-padding-desktop
             
-            &_vkontakte {
-                svg {
-                    vertical-align: -7px;
+            @media $mq-desktop
+                display inline-block
+            
+            &:empty
+                padding-right 0
+        
+        &__icon
+            display flex
+            align-items center
+            justify-content center
+            width $button-size-mobile
+            text-align center
+            
+            @media $mq-desktop
+                width $button-size-desktop + 2px
+            
+            svg
+                width $icon-size-mobile
+                height $icon-size-mobile
+                
+                @media $mq-desktop
+                    width $icon-size-desktop
+                    height $icon-size-desktop
+        
+        &__counter
+            padding-right $button-padding-desktop
+            font-size 11px
+            color rgba(255, 255, 255, 0.5)
+            
+            @media $mq-desktop
+                line-height unit(round(($button-size-desktop/@font-size), 3), '') + 0.06
+    
+    // When likely is ready
+    &.likely--ready
+        .likely
+            &__counter
+                
+                @media $mq-desktop
+                    display inline-block
                     
-                    @media all and (min-width: 760px){
-                        vertical-align: -2px;
-                    }
-                }
-            }
-            
-            &_gplus {
-                svg {
-                    width: 18px;
-                    height: 18px;
-                    vertical-align: -5px;
-                    
-                    @media all and (min-width: 760px){
-                        width: 12px;
-                        height: 12px;
-                        vertical-align: -2px;
-                    }
-                }
-            }
-            
-            &_telegram {
-                svg {
-                    // width: 18px;
-                    // height: 18px;
-                    // vertical-align: -5px;
-                    margin-left: -3px;
-                    
-                    @media all and (min-width: 760px){
-                        width: 12px;
-                        height: 12px;
-                        vertical-align: -2px;
-                    }
-                }
-            }
-            
-            &_viber {
-                svg {
-                    margin-left: -1px;
-                    margin-top: 2px;
-                    
-                    @media all and (min-width: 760px){
-                        width: 12px;
-                        height: 12px;
-                        vertical-align: -2px;
-                    }
-                }
-            }
-            
-            &_more {
-                svg {
-                    margin-left: -3px;
-                }
-            }
-            
-            @media all and (min-width: 760px){
-                width: 22px;
-                height: 20px;
-            }
-        }
+                    &--empty
+                        display none
 
-        &__button,
-        &__counter {
-            text-decoration: none;
-            text-rendering: optimizeLegibility;
-            display: none;
-            margin: 0;
-            outline: 0;
-        }
-
-        &__button {
-            position: relative;
-            cursor: pointer;
-            user-select: none;
-            padding-right: 6px;
-            
-            @media all and (min-width: 760px){
-                display: inline-block;
-            }
-        }
-
-        &__counter {
-            position: relative;
-            font-weight: normal;
-            font-size: 11px;
-            opacity: .5;
-            padding-right: 6px;
-            display: none;
-        }
-
-        &__widget,
-        &__icon,
-        &__button {
-            vertical-align: top;
-        }
-
-        &__button:empty {
-            display: none;
-        }
-        
-    } // .likely
-        
-    svg {
-        vertical-align: -6px;
-        width: 20px;
-        height: 20px;
-        fill: #fff;
-        
-        @media all and (min-width: 760px){
-            width: 12px;
-            height: 12px;
-            vertical-align: -2px;
-        }
-    }
     
-    // placeholders while loading
-    @media all and (min-width: 760px){
-        
-        &:not(.likely_visible) > div:not(.likely__widget) {
-            padding-left: 22px;
-            padding-right: 6px;
-            text-align: center;
-            position: relative;
-            white-space: nowrap;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0);
-            cursor: default;
-            pointer-events: none;
-            overflow hidden;
-            display: inline-block;
-            vertical-align: top;
-            height: 20px;
-            border-radius: 3px;
-            margin-top: 2px;
-            margin-bottom: 2px;
-            margin-right: 4px;
-            visibility: visible;
-            -webkit-user-select: none;
-               -moz-user-select: none;
-                -ms-user-select: none;
-                    user-select: none;
-            
-            &:empty {
-                padding-right: 0;
-            }
-            
-            &.telegram, &.whatsapp, &.viber, &.more {
-                visibility: hidden;
-                opacity: 0;
-                display: none;
-            }
-        }
-        
-    }
-    
-} // .likely:not(.likely_custom)
-    
-.likely_ready:not(.likely_custom) {
-    
-    .likely__counter {
-        @media all and (min-width: 760px){
-            
-            &:not(.likely__counter_empty){
-                display: inline-block;
-            }
-            
-            &_empty {
-                display: none;
-            }
-        }
-    }
-}
-
-.likely_expanded:not(.likely_custom) {
-    .likely__widget {
-        visibility: visible;
-        opacity: 1;
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-    }
-}
-
-// another mobile appearance
-.likely_some:not(.likely_custom) {
-    height: 32px + 12px;
-    line-height: 32px;
-    left: 15px;
-    bottom: 3px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap-reverse;
-        -ms-flex-wrap: wrap-reverse;
-            flex-wrap: wrap-reverse;
-            
-    @media all and (min-width: 760px){
-        left: 0;
-        height: auto;
-    }
- 
-    .likely {
-        &__widget {
-            display: inline-block;
-            width: 21.5%;
-            margin-right: 3.5%;
-            height: 32px;
-            border-radius: 5px;
-            visibility: hidden;
-            opacity: 0;
-            -webkit-transform: translateY(6px);
-                    transform: translateY(6px);
-            
-            @media all and (min-width: 760px){
-                width: auto;
-            }
-            
-            &_twitter, &_facebook, &_vkontakte {
-                visibility: visible;
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
-            }
-            
-            &:nth-of-type(3){
-                margin-right: 25%;
+    // When expanded in mobile view
+    &.likely--expanded
+        .likely
+            &__widget
                 
-                @media all and (min-width: 760px){
-                    margin-right: 4px;
-                }
-            }
-            
-            // For 3x3
-            // &:nth-of-type(3n){
-            //     margin-right: 25%;
+                @media $mq-mobile
+                    &:nth-child(n + 4):not(.likely__widget--more)
+                        visibility visible
+                        opacity 1
+                        transform translateY(0)
+    
+    // If flexbox or calc() not supported
+    &.likely--ancient
+        display block
+        font-size 0
+        
+        @media $mq-mobile
+            padding-top $likely-mobile-padding - $button-margin-mobile
+            transform scaleY(-1)
+        
+        > *
+            display inline-block
+            vertical-align top
+        
+        .likely 
+            &__widget
+                display inline-block
+                white-space nowrap
+                width 21%
+                margin $button-margin-mobile 2%
+                font-size $likely-font-size
+                text-align center
+                transform none
+                transition none
                 
-            //     @media all and (min-width: 760px){
-            //         margin-right: 4px;
-            //     }
-            // }
-            
-            &_more {
-                position absolute;
-                bottom: 12px;
-                right: 0;
-                visibility: visible;
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
+                @media $mq-mobile
+                    transform scaleY(-1)
+                
+                @media $mq-desktop
+                    width auto
+                    margin $button-margin-desktop
+                    
+                    &:first-child
+                        margin-left 0
+                    
+                    &:last-child
+                        margin-right 0
+                    
+                    &--telegram, &--whatsapp, &--viber, &--more
+                        display none
                         
-                @media all and (min-width: 760px){
-                    position relative;
-                    bottom: 0;
-                }
+                &:nth-child(3)
+                    @media $mq-mobile
+                        margin-right 25%
                 
-                .likely__icon {
-                    -webkit-transition: all .1s ease-in;
-                    transition: all .1s ease-in;
-                    
-                    &:after {
-                        content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgb(255,255,255)' viewBox='19 32 16 16'><path d='M34.02 38.997h-6.017V32.98h-2.006v6.017H19.98v2.007h6.017v6.017h2.006v-6.016h6.018'/></svg>");
-                        display: inline-block;
-                        height: 16px;
-                        vertical-align: -4px;
-                    }
-                }
+                &:nth-child(n + 4):not(.likely__widget--more)
+                    @media $mq-mobile
+                        transform scaleY(-1)
                 
-                &.active {       
-                    .likely__icon {
-                        transform: rotate(45deg);
-                    }
-                }
+                &--more
+                    @media $mq-mobile
+                        width 20%
+                        position absolute
+                        top $likely-mobile-padding - $button-margin-mobile
+                        right $likely-mobile-padding - $button-margin-mobile
             
-            }
-            
-        }
-        
-        &__icon {
-            width: 32px;
-            height: 32px;
-            
-            &_vkontakte {
-                svg {
-                    vertical-align: -4px;
-                }
-            }
-            
-            &_gplus {
-                svg {
-                    width: 14px;
-                    height: 14px;
-                    vertical-align: -3px;
-                }
-            }
-            
-            &_more {
-                svg {
-                    display: none;
-                }
-            }
-        }
-        
-    } // .likely
+            &__icon
+                display inline-block
+                vertical-align middle
+                height $icon-size-mobile
+                margin-top -2px
+                transition none
+                
+                @media $mq-desktop
+                    height $icon-size-desktop
+                
+                svg
+                    vertical-align top
     
-    svg {
-        width: 16px;
-        height: 16px;
-        vertical-align: -4px;
-    }
+// General styles
+.likely
+    transition opacity 0.08s ease-in-out
     
-    &.likely_expanded {
-        .likely {
-            &__widget {
-                visibility: visible;
-                opacity: 1;
-                -webkit-transform: translateY(0);
-                        transform: translateY(0);
-            }
-        }
-    }
+    @media $mq-mobile
+        visibility hidden
+        opacity 0
     
-    colorize('more', #868686);
+    &__widget
+        font-family 'Helvetica Neue', Arial, sans-serif
+        background #333
+        color #fff
+        fill #fff
+        cursor pointer
     
-} // .likely_some
+    &__counter
+        display none
     
-.likely_feed:not(.likely_custom) {
-    display: none;
+    &--ready
+        @media $mq-mobile
+            visibility visible
+            opacity 1
     
-    @media all and (min-width: 760px){
-        display: inline-block;
-    }
-    
-    .likely__widget_more {
-        display: none;
-    }
-}
+    &:not(.likely--init)
+        .likely
+            &__widget
+                display inline-block
+                vertical-align top
+                color rgba(255, 255, 255, 0)
+                cursor default
+                pointer-events none
+                padding-left $button-size-desktop + 2px
+                padding-right $button-padding-desktop
+                transition-property none
+                
+                &:empty
+                    padding 0
+                
+                &.telegram, &.whatsapp, &.viber, &.more
+                    display none
 
-.likely_secondary, .likely_some.likely_secondary:not(.likely_custom) {
-    display: none;
-    
-    @media all and (min-width: 760px){
-        display: inline-block;
-    }
-}
+.likely--ready
+    .likely
+        &__counter
+            &--empty
+                display none
+
+// Services colors
+colorize(button, color)
+    .likely__widget.{button}, .likely__widget--{button}
+        background color
+        
+        &:hover, &.active
+            background mix(#000, color, 15%)
+
+colorize('twitter', #55acee)
+colorize('facebook', #3b5998)
+colorize('vkontakte', #45668e)
+colorize('gplus', #dc4e41)
+colorize('odnoklassniki', #ed812b)
+colorize('pocket', #ef4056)
+colorize('telegram', #0088cc)
+colorize('whatsapp', #43d854)
+colorize('viber', #8f5db7)
+colorize('more', #95A5A6)

@@ -1,3 +1,9 @@
+require('browsernizr/test/css/flexbox');
+require('browsernizr/test/css/flexwrap');
+require('browsernizr/test/css/calc');
+
+var Modernizr = require('browsernizr');
+
 var Button = require('./button');
 
 var services = require('./services'),
@@ -35,6 +41,10 @@ Likely.prototype = {
         }
         else {
             this.appear();
+        }
+
+        if (!(Modernizr.flexbox && Modernizr.flexwrap) || !Modernizr.csscalc) {
+            this.container.classList.add(config.name + '--ancient');
         }
     },
     
@@ -95,7 +105,7 @@ Likely.prototype = {
      * Show the buttons with smooth animation
      */
     appear: function () {
-        this.container.classList.add(config.name + '_visible');
+        this.container.classList.add(config.name + '--visible');
     },
     
     /**
@@ -105,7 +115,7 @@ Likely.prototype = {
         if (this.timeout) {
             clearTimeout(this.timeout);
             
-            this.container.classList.add(config.name + '_ready');
+            this.container.classList.add(config.name + '--ready');
         }
     }
 };
