@@ -1,9 +1,3 @@
-require('browsernizr/test/css/flexbox');
-require('browsernizr/test/css/flexwrap');
-require('browsernizr/test/css/calc');
-
-var Modernizr = require('browsernizr');
-
 var Button = require('./button');
 
 var services = require('./services'),
@@ -43,9 +37,7 @@ Likely.prototype = {
             this.appear();
         }
 
-        if (!(Modernizr.flexbox && Modernizr.flexwrap) || !Modernizr.csscalc) {
-            this.container.classList.add(config.name + '--ancient');
-        }
+        utils.flexboxSupport(this.container, config.name);
     },
     
     /**

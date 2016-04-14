@@ -64,6 +64,23 @@ var utils = {
     },
 
     /**
+     * Check new flexbox syntax support
+     */
+    flexboxSupport: function(element, name){
+        var d = document, f = 'flex', fw = '-webkit-'+f, e = d.createElement('b'), c;
+
+        try { 
+            e.style.display = fw; 
+            e.style.display = f; 
+            c = (e.style.display == f || e.style.display == fw) ? f : 'no-'+f; 
+        } catch(e) { 
+            c = 'no-'+f; 
+        }
+
+        element.className += ' ' + name + '--' + c;
+    },
+
+    /**
      * Return node.dataset or plain object for IE 10without setters
      * based on https://gist.github.com/brettz9/4093766#file_html5_dataset.js
      *

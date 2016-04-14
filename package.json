@@ -11,7 +11,6 @@
   "main": "source/index.js",
   "devDependencies": {
     "autoprefixer-stylus": "^0.9.2",
-    "browsernizr": "^2.1.0",
     "gulp": "*",
     "gulp-browserify": "*",
     "gulp-combine-mq": "^0.4.0",

@@ -122,8 +122,6 @@ LikelyButton.prototype = {
         });
         
         widget.innerHTML = icon + button;
-
-        this.likely.container.classList.add(config.name + '--init');
     },
     
     /**

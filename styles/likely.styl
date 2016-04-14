@@ -24,7 +24,7 @@ $mq-mobile = '(max-width: 759px)'
 // Default skin
 .likely:not(.likely--custom)
     box-sizing border-box
-    display flex
+    display inline-flex
     flex-wrap wrap-reverse
     font-size $likely-font-size
     width 100%
@@ -38,6 +38,8 @@ $mq-mobile = '(max-width: 759px)'
         flex-wrap wrap
         position relative
         bottom auto
+        min-height $button-size-desktop + $button-margin-desktop*2
+        width auto
         height auto
         padding 0
     
@@ -76,7 +78,7 @@ $mq-mobile = '(max-width: 759px)'
                 min-width $button-size-desktop
                 width auto
                 height $button-size-desktop
-                margin $button-margin-desktop
+                margin $button-margin-desktop $button-margin-desktop*2 $button-margin-desktop 0
                 line-height unit(round(($button-size-desktop/$likely-font-size), 3), '')
                 border-radius $button-radius-desktop
                 transition-property background
@@ -157,13 +159,17 @@ $mq-mobile = '(max-width: 759px)'
                         opacity 1
                         transform translateY(0)
     
-    // If flexbox or calc() not supported
-    &.likely--ancient
-        display block
+    // If flexbox is not supported
+    &.likely--no-flex
+        display inline-block
         font-size 0
         
         @media $mq-mobile
-            padding-top $likely-mobile-padding - $button-margin-mobile
+            width auto
+            left $likely-mobile-padding
+            right 0
+            bottom $likely-mobile-padding - $button-margin-mobile
+            padding 0
             transform scaleY(-1)
         
         > *
@@ -175,13 +181,14 @@ $mq-mobile = '(max-width: 759px)'
                 display inline-block
                 white-space nowrap
                 width 21%
-                margin $button-margin-mobile 2%
+                margin $button-margin-mobile 4% $button-margin-mobile 0
                 font-size $likely-font-size
                 text-align center
                 transform none
                 transition none
                 
                 @media $mq-mobile
+                    
                     transform scaleY(-1)
                 
                 @media $mq-desktop
@@ -199,7 +206,7 @@ $mq-mobile = '(max-width: 759px)'
                         
                 &:nth-child(3)
                     @media $mq-mobile
-                        margin-right 25%
+                        margin-right 29%
                 
                 &:nth-child(n + 4):not(.likely__widget--more)
                     @media $mq-mobile
@@ -207,10 +214,13 @@ $mq-mobile = '(max-width: 759px)'
                 
                 &--more
                     @media $mq-mobile
-                        width 20%
+                        width 21%
+                        margin-left 0
+                        margin-right 0
                         position absolute
-                        top $likely-mobile-padding - $button-margin-mobile
-                        right $likely-mobile-padding - $button-margin-mobile
+                        top 0
+                        left 25%*3
+                        // left $likely-mobile-padding - $button-margin-mobile
             
             &__icon
                 display inline-block
@@ -227,11 +237,9 @@ $mq-mobile = '(max-width: 759px)'
     
 // General styles
 .likely
+    visibility hidden
+    opacity 0
     transition opacity 0.08s ease-in-out
-    
-    @media $mq-mobile
-        visibility hidden
-        opacity 0
     
     &__widget
         font-family 'Helvetica Neue', Arial, sans-serif
@@ -244,27 +252,8 @@ $mq-mobile = '(max-width: 759px)'
         display none
     
     &--ready
-        @media $mq-mobile
-            visibility visible
-            opacity 1
-    
-    &:not(.likely--init)
-        .likely
-            &__widget
-                display inline-block
-                vertical-align top
-                color rgba(255, 255, 255, 0)
-                cursor default
-                pointer-events none
-                padding-left $button-size-desktop + 2px
-                padding-right $button-padding-desktop
-                transition-property none
-                
-                &:empty
-                    padding 0
-                
-                &.telegram, &.whatsapp, &.viber, &.more
-                    display none
+        visibility visible
+        opacity 1
 
 .likely--ready
     .likely
