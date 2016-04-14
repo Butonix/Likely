@@ -163,6 +163,7 @@ $mq-mobile = '(max-width: 759px)'
     &.likely--no-flex
         display inline-block
         font-size 0
+        overflow visible
         
         @media $mq-mobile
             width auto
@@ -188,7 +189,6 @@ $mq-mobile = '(max-width: 759px)'
                 transition none
                 
                 @media $mq-mobile
-                    
                     transform scaleY(-1)
                 
                 @media $mq-desktop
@@ -220,7 +220,6 @@ $mq-mobile = '(max-width: 759px)'
                         position absolute
                         top 0
                         left 25%*3
-                        // left $likely-mobile-padding - $button-margin-mobile
             
             &__icon
                 display inline-block
@@ -234,7 +233,7 @@ $mq-mobile = '(max-width: 759px)'
                 
                 svg
                     vertical-align top
-    
+
 // General styles
 .likely
     visibility hidden
