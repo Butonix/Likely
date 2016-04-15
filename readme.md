@@ -46,7 +46,8 @@ Likely supports following social networks and mobile messengers:
 
 ### Styling
 
-For custom styles add class `.likely_custom` to `.likely` container and then write your own css.
+For custom styles add class `.likely--custom` to `.likely` container and then write your own css.
+Add `.likely--desktop` if buttons set should not be visible on small screens.
 
 ## Options
 

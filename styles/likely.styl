@@ -33,6 +33,7 @@ $mq-mobile = '(max-width: 759px)'
     position fixed
     bottom 0
     left 0
+    z-index 1000
     
     @media $mq-desktop
         flex-wrap wrap
@@ -42,6 +43,7 @@ $mq-mobile = '(max-width: 759px)'
         width auto
         height auto
         padding 0
+        z-index auto
     
     *
         box-sizing border-box
@@ -233,8 +235,13 @@ $mq-mobile = '(max-width: 759px)'
                 
                 svg
                     vertical-align top
+    
+    // If buttons should not be visible on mobile
+    &.likely--desktop
+        @media $mq-mobile
+            display none
 
-// General styles
+// General styles for correct work
 .likely
     visibility hidden
     opacity 0
