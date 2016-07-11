@@ -1,7 +1,7 @@
 # Likely
 
 The social sharing buttons that aren’t shabby.
-Fork was made for using on [TJournal](https://tjournal.ru)
+Fork was made for using on [TJournal](https://tjournal.ru) and [VC](https://vc.ru)
 
 ## Install
 
@@ -19,13 +19,15 @@ social networks in child divs:
 
 ```html
 <div class="likely">
-    <div class="twitter">Tweet</div>
-    <div class="facebook">Share</div>
-    <div class="vkontakte">Share</div>
+    <div class="twitter">Твитнуть</div>
+    <div class="facebook">Поделиться</div>
+    <div class="vkontakte">Поделиться</div>
     <div class="gplus"></div>
     <div class="odnoklassniki"></div>
+    <div class="pocket"></div>
     <div class="telegram"></div>
     <div class="whatsapp"></div>
+    <div class="viber"></div>
     <div class="more"></div>
 </div>
 ```
@@ -37,18 +39,15 @@ Likely supports following social networks and mobile messengers:
 * `vkontakte` – VK
 * `gplus` - Google+
 * `odnoklassniki` – Odnoklassniki
+* `pocket` – Pocket
 * `telegram` – Telegram
 * `whatsapp` – WhatsApp
-
-### "More" button
-
-Remove `<div class="more"></div>` if you don't want to display button set on small resolutions.
-Keeping it will hide social buttons under one button, which will be fixed in bottom right corner of the screen. Click on it to show hidden buttons.
+* `viber` – Viber
 
 ### Styling
-For custom styles add class `.likely_custom` to `.likely` container and then write your own css.
 
-Add `.likely_secondary` class to `.likely` to hide button set on small screens. Useful, when you have more than one set on page, but want to show only one on mobile.
+For custom styles add class `.likely--custom` to `.likely` container and then write your own css.
+Add `.likely--desktop` if buttons set should not be visible on small screens.
 
 ## Options
 

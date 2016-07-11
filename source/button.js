@@ -108,7 +108,7 @@ LikelyButton.prototype = {
             text    = widget.innerHTML;
         
         widget.addEventListener('click', this.click.bind(this));
-        widget.classList.remove(this.service)
+        widget.classList.remove(this.service);
         widget.className += (' ' + this.className('widget'));
         
         var button = utils.template(htmlSpan, {
@@ -149,7 +149,7 @@ LikelyButton.prototype = {
     className: function (className) {
         var fullClass = config.prefix + className;
     
-        return fullClass + ' ' + fullClass + '_' + this.service;
+        return fullClass + ' ' + fullClass + '--' + this.service;
     },
     
     /**
@@ -172,7 +172,7 @@ LikelyButton.prototype = {
         };
         
         if (!counter && !this.options.zeroes) {
-            options.className += ' ' + config.prefix + 'counter_empty';
+            options.className += ' ' + config.prefix + 'counter--empty';
             options.content = '';
         }
         
@@ -194,7 +194,7 @@ LikelyButton.prototype = {
             // console.log(this);
 
             this.widget.classList.toggle('active');
-            this.widget.offsetParent.classList.toggle(this.options.className);
+            this.widget.parentElement.classList.toggle(this.options.className);
 
         } else {
 

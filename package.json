@@ -10,6 +10,7 @@
   "license": "MIT",
   "main": "source/index.js",
   "devDependencies": {
+    "autoprefixer-stylus": "^0.9.2",
     "gulp": "*",
     "gulp-browserify": "*",
     "gulp-combine-mq": "^0.4.0",

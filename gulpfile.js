@@ -11,6 +11,7 @@ var stylus = require ('gulp-stylus')
 var csso = require ('gulp-csso')
 var zip = require ('gulp-zip')
 var combineMq = require('gulp-combine-mq')
+var autoprefixer = require('autoprefixer-stylus')
 
 var release = './release/'
 
@@ -32,7 +33,9 @@ gulp.task ('js', function () {
 
 gulp.task ('css', function () {
   return gulp.src ('./styles/likely.styl')
-    .pipe (stylus ())
+    .pipe (stylus ({
+        use: [autoprefixer('last 2 versions')]
+    }))
     .pipe(combineMq({ beautify: false }))
     .pipe (csso ())
     .pipe (gulp.dest (release))
