@@ -55,6 +55,7 @@ You can set some options on Likely button set via `data-*` attributes:
 
 * `data-url` – URL to share and load counters for
 * `data-title` – Page title
+* `data-twitter` – Optional page title for twitter
 
 There's also social network specific options.
 
