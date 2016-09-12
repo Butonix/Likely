@@ -200,10 +200,11 @@ LikelyButton.prototype = {
 
             if (options.click.call(this)) {
 
-                var twitterText = this.likely.container.dataset.twitter;
+                var twitterText = this.likely.container.dataset.twitter,
+                    twitterUrl = this.likely.container.dataset.twitterUrl;
 
                 var url = utils.makeUrl(options.popupUrl, {
-                    url:   options.url,
+                    url:   (this.service == 'twitter' && twitterUrl != '' && twitterUrl != undefined) ? twitterUrl : options.url,
                     title: (this.service == 'twitter' && twitterText != '' && twitterText != undefined) ? twitterText : options.title
                 });
 
