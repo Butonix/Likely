@@ -16,12 +16,13 @@ var services = {
     telegram:      require('./telegram'),
     whatsapp:      require('./whatsapp'),
     viber:         require('./viber'),
+    email:         require('./email'),
     more:          require('./more')
 };
 
 utils.each(services, function (service, key) {
     Service(service);
-    
+
     service.svgi = svg[key];
     service.name = key;
 });

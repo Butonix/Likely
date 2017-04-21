@@ -34,7 +34,7 @@ $mq-mobile = '(max-width: 759px)'
     bottom 0
     left 0
     z-index 1000
-    
+
     @media $mq-desktop
         flex-wrap wrap
         position relative
@@ -44,10 +44,10 @@ $mq-mobile = '(max-width: 759px)'
         height auto
         padding 0
         z-index auto
-    
+
     *
         box-sizing border-box
-    
+
     .likely
         &__widget
             display flex
@@ -65,17 +65,17 @@ $mq-mobile = '(max-width: 759px)'
             transition-duration 0.08s
             transition-timing-function ease-in-out
             transition-property all
-            
+
             @media $mq-mobile
                 &:nth-child(n + 4):not(.likely__widget--more)
                     order 2
                     visibility hidden
                     opacity 0
                     transform translateY($button-margin-mobile)
-                                    
+
                 &--more
                     order 1
-            
+
             @media $mq-desktop
                 min-width $button-size-desktop
                 width auto
@@ -84,89 +84,89 @@ $mq-mobile = '(max-width: 759px)'
                 line-height unit(round(($button-size-desktop/$likely-font-size), 3), '')
                 border-radius $button-radius-desktop
                 transition-property background
-                
+
                 &:first-child
                     margin-left 0
-                
+
                 &:last-child
                     margin-right 0
-                
-                &--telegram, &--whatsapp, &--viber, &--more
+
+                &--telegram, &--whatsapp, &--viber, &--email, &--more
                     display none
-            
+
             &--more
                 .likely__icon
                     transition all 0.08s ease-in-out
-                
+
                 &.active
                     .likely__icon
                         transform rotate(45deg)
-        
+
         &__button
             display none
             padding-right $button-padding-desktop
-            
+
             @media $mq-desktop
                 display inline-block
-            
+
             &:empty
                 padding-right 0
-        
+
         &__icon
             display flex
             align-items center
             justify-content center
             width $button-size-mobile
             text-align center
-            
+
             @media $mq-desktop
                 width $button-size-desktop + 2px
-            
+
             svg
                 width $icon-size-mobile
                 height $icon-size-mobile
-                
+
                 @media $mq-desktop
                     width $icon-size-desktop
                     height $icon-size-desktop
-        
+
         &__counter
             padding-right $button-padding-desktop
             font-size 11px
             color rgba(255, 255, 255, 0.5)
-            
+
             @media $mq-desktop
                 line-height unit(round(($button-size-desktop/@font-size), 3), '') + 0.102
-    
+
     // When likely is ready
     &.likely--ready
         .likely
             &__counter
-                
+
                 @media $mq-desktop
                     display inline-block
-                    
+
                     &--empty
                         display none
 
-    
+
     // When expanded in mobile view
     &.likely--expanded
         .likely
             &__widget
-                
+
                 @media $mq-mobile
                     &:nth-child(n + 4):not(.likely__widget--more)
                         visibility visible
                         opacity 1
                         transform translateY(0)
-    
+
     // If flexbox is not supported
     &.likely--no-flex
         display inline-block
         font-size 0
         overflow visible
-        
+
         @media $mq-mobile
             width auto
             left $likely-mobile-padding
@@ -174,12 +174,12 @@ $mq-mobile = '(max-width: 759px)'
             bottom $likely-mobile-padding - $button-margin-mobile
             padding 0
             transform scaleY(-1)
-        
+
         > *
             display inline-block
             vertical-align top
-        
-        .likely 
+
+        .likely
             &__widget
                 display inline-block
                 white-space nowrap
@@ -189,31 +189,31 @@ $mq-mobile = '(max-width: 759px)'
                 text-align center
                 transform none
                 transition none
-                
+
                 @media $mq-mobile
                     transform scaleY(-1)
-                
+
                 @media $mq-desktop
                     width auto
                     margin $button-margin-desktop
-                    
+
                     &:first-child
                         margin-left 0
-                    
+
                     &:last-child
                         margin-right 0
-                    
-                    &--telegram, &--whatsapp, &--viber, &--more
+
+                    &--telegram, &--whatsapp, &--viber, &--email, &--more
                         display none
-                        
+
                 &:nth-child(3)
                     @media $mq-mobile
                         margin-right 29%
-                
+
                 &:nth-child(n + 4):not(.likely__widget--more)
                     @media $mq-mobile
                         transform scaleY(-1)
-                
+
                 &--more
                     @media $mq-mobile
                         width 21%
@@ -222,20 +222,20 @@ $mq-mobile = '(max-width: 759px)'
                         position absolute
                         top 0
                         left 25%*3
-            
+
             &__icon
                 display inline-block
                 vertical-align middle
                 height $icon-size-mobile
                 margin-top -2px
                 transition none
-                
+
                 @media $mq-desktop
                     height $icon-size-desktop
-                
+
                 svg
                     vertical-align top
-    
+
     // If buttons should not be visible on mobile
     &.likely--desktop
         @media $mq-mobile
@@ -246,17 +246,17 @@ $mq-mobile = '(max-width: 759px)'
     visibility hidden
     opacity 0
     transition opacity 0.08s ease-in-out
-    
+
     &__widget
         font-family 'Helvetica Neue', Arial, sans-serif
         background #333
         color #fff
         fill #fff
         cursor pointer
-    
+
     &__counter
         display none
-    
+
     &--ready
         visibility visible
         opacity 1
@@ -271,7 +271,7 @@ $mq-mobile = '(max-width: 759px)'
 colorize(button, color)
     .likely__widget.{button}, .likely__widget--{button}
         background color
-        
+
         &:hover, &.active
             background mix(#000, color, 15%)
 
@@ -284,4 +284,5 @@ colorize('pocket', #ef4056)
 colorize('telegram', #0088cc)
 colorize('whatsapp', #43d854)
 colorize('viber', #8f5db7)
+colorize('email', #43475d)
 colorize('more', #95A5A6)

@@ -196,6 +196,15 @@ LikelyButton.prototype = {
             this.widget.classList.toggle('active');
             this.widget.parentElement.classList.toggle(this.options.className);
 
+        } else if (this.service == 'email'){
+
+            var url = utils.makeUrl(options.popupUrl, {
+                url: options.url,
+                title: options.title
+            });
+
+            window.location = url;
+
         } else {
 
             if (options.click.call(this)) {
