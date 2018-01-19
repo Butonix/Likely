@@ -55,8 +55,9 @@ $mq-mobile = '(max-width: 759px)'
             font-size 1em
             color #fff
             min-width $button-size-mobile
-            width 'calc(%s - %s)' % (25% $button-margin-mobile*2)
-            margin $button-margin-mobile
+            width 25%
+            padding 0 $button-margin-mobile
+            margin $button-margin-mobile 0
             height $button-size-mobile
             line-height $button-size-mobile
             border-radius $button-radius-mobile
@@ -80,6 +81,7 @@ $mq-mobile = '(max-width: 759px)'
                 min-width $button-size-desktop
                 width auto
                 height $button-size-desktop
+                padding 0
                 margin $button-margin-desktop $button-margin-desktop*2 $button-margin-desktop 0
                 line-height unit(round(($button-size-desktop/$likely-font-size), 3), '')
                 border-radius $button-radius-desktop
@@ -96,11 +98,13 @@ $mq-mobile = '(max-width: 759px)'
 
             &--more
                 .likely__icon
-                    transition all 0.08s ease-in-out
+                    svg
+                        transition all 0.08s ease-in-out
 
                 &.active
                     .likely__icon
-                        transform rotate(45deg)
+                        svg
+                            transform rotate(45deg)
 
         &__button
             display none
@@ -116,11 +120,13 @@ $mq-mobile = '(max-width: 759px)'
             display flex
             align-items center
             justify-content center
-            width $button-size-mobile
+            width 100%
             text-align center
+            border-radius $button-radius-mobile
 
             @media $mq-desktop
                 width $button-size-desktop + 2px
+                border-radius: 0
 
             svg
                 width $icon-size-mobile
@@ -249,10 +255,16 @@ $mq-mobile = '(max-width: 759px)'
 
     &__widget
         font-family 'Helvetica Neue', Arial, sans-serif
-        background #333
         color #fff
         fill #fff
         cursor pointer
+
+        @media $mq-desktop
+            background #333
+
+    &__icon
+        @media $mq-mobile
+            background #333
 
     &__counter
         display none
@@ -269,11 +281,22 @@ $mq-mobile = '(max-width: 759px)'
 
 // Services colors
 colorize(button, color)
-    .likely__widget.{button}, .likely__widget--{button}
-        background color
+    .likely__widget.{button},
+    .likely__widget--{button}
 
-        &:hover, &.active
-            background mix(#000, color, 15%)
+        @media $mq-desktop
+            background color
+
+            &:hover, &.active
+                background mix(#000, color, 15%)
+
+    .likely__icon--{button}
+
+        @media $mq-mobile
+            background color
+
+            &:hover, &.active
+                background mix(#000, color, 15%)
 
 colorize('twitter', #55acee)
 colorize('facebook', #3b5998)
