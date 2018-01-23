@@ -138,7 +138,7 @@ LikelyButton.prototype = {
                 this.service,
                 options.url,
                 options
-            )(this.updateCounter.bind(this))
+            )(this.updateCounter.bind(this));
         }
     },
 
@@ -212,13 +212,13 @@ LikelyButton.prototype = {
                 var twitterText = this.likely.container.dataset.twitter,
                     twitterUrl = this.likely.container.dataset.twitterUrl;
 
-                var url = utils.makeUrl(options.popupUrl, {
+                var window_url = utils.makeUrl(options.popupUrl, {
                     url:   (this.service == 'twitter' && twitterUrl != '' && twitterUrl != undefined) ? twitterUrl : options.url,
                     title: (this.service == 'twitter' && twitterText != '' && twitterText != undefined) ? twitterText : options.title
                 });
 
                 dom.openPopup(
-                    this.addAdditionalParamsToUrl(url),
+                    this.addAdditionalParamsToUrl(window_url),
                     config.prefix + this.service,
                     options.popupWidth,
                     options.popupHeight
@@ -242,9 +242,7 @@ LikelyButton.prototype = {
             )),
             delimeter = url.indexOf('?') === -1 ? '?' : '&';
 
-        return parameters === ''
-            ? url
-            : url + delimeter + parameters;
+        return (parameters === '') ? url : (url + delimeter + parameters);
     }
 };
 
