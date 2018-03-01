@@ -1,8 +1,9 @@
 var services = require('./services'),
-    config   = require('./config'),
-    fetch    = require('./fetch'),
-    utils    = require('./utils'),
-    dom      = require('./dom');
+    config = require('./config'),
+    fetch = require('./fetch'),
+    utils = require('./utils'),
+    dom = require('./dom'),
+    storage = require('./storage');
 
 var htmlSpan = '<span class="{className}">{content}</span>';
 
@@ -191,8 +192,6 @@ LikelyButton.prototype = {
 
         if ( this.service == 'more' ){
 
-            // console.log(this);
-
             this.widget.classList.toggle('active');
             this.widget.parentElement.classList.toggle(this.options.className);
 
@@ -205,6 +204,8 @@ LikelyButton.prototype = {
 
             window.location = url;
 
+            this.rememberClicked(this.service);
+
         } else {
 
             if (options.click.call(this)) {
@@ -213,8 +214,8 @@ LikelyButton.prototype = {
                     twitterUrl = this.likely.container.dataset.twitterUrl;
 
                 var window_url = utils.makeUrl(options.popupUrl, {
-                    url:   (this.service == 'twitter' && twitterUrl != '' && twitterUrl != undefined) ? twitterUrl : options.url,
-                    title: (this.service == 'twitter' && twitterText != '' && twitterText != undefined) ? twitterText : options.title
+                    url:   (this.service === 'twitter' && twitterUrl !== '' && twitterUrl !== undefined) ? twitterUrl : options.url,
+                    title: (this.service === 'twitter' && twitterText !== '' && twitterText !== undefined) ? twitterText : options.title
                 });
 
                 dom.openPopup(
@@ -223,6 +224,8 @@ LikelyButton.prototype = {
                     options.popupWidth,
                     options.popupHeight
                 );
+
+                this.rememberClicked(this.service);
             }
 
         }
@@ -243,6 +246,22 @@ LikelyButton.prototype = {
             delimeter = url.indexOf('?') === -1 ? '?' : '&';
 
         return (parameters === '') ? url : (url + delimeter + parameters);
+    },
+
+    /**
+     * Remember last clicked button and save to storage
+     */
+    rememberClicked: function (service) {
+        var services = storage.getItem(config.storageKey) || [],
+            serviceIndex = services.indexOf(service);
+
+        if (serviceIndex !== -1) {
+            services.splice(serviceIndex, 1);
+        }
+
+        services.splice(0, 0, service);
+
+        storage.setItem(config.storageKey, services);
     }
 };
 

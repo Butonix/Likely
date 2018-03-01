@@ -1,3 +1,5 @@
+var config = require('./config');
+
 var div = document.createElement('div'),
     gid = 0;
 
@@ -77,6 +79,13 @@ var dom = module.exports = {
      */
     findAll: function (selector, node) {
         return (node || document).querySelectorAll(selector);
+    },
+
+    /**
+     * Check mobile media query
+     */
+    isMobile: function() {
+        return !window.matchMedia('(min-width: ' + config.breakpoint + 'px)').matches;
     },
 
     /**
