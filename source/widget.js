@@ -12,7 +12,10 @@ var services = require('./services'),
  * @param {Node} container
  * @param {Object} options
  */
-function Likely (container, options) {
+function Likely(container, options) {
+    console.log(container.dataset.smart);
+
+    this.isSmartOrder = container.dataset.smart !== undefined ? true : false;
     this.container = container;
     this.options   = options;
 
@@ -38,7 +41,10 @@ Likely.prototype = {
             savedServices.forEach(function (service) {
 
                 var button = dom.find('.' + service);
-                button.parentNode.insertBefore(button, button.parentNode.firstChild);
+
+                if (button) {
+                    button.parentNode.insertBefore(button, button.parentNode.firstChild);
+                }
 
             });
         }
@@ -51,7 +57,7 @@ Likely.prototype = {
 
         var buttons = utils.toArray(this.container.children);
 
-        if (dom.isMobile()) {
+        if (dom.isMobile() && this.isSmartOrder) {
             this.reorder(buttons);
         }
 

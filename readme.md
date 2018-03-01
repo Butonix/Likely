@@ -5,7 +5,7 @@ Fork was made for using on [TJournal](https://tjournal.ru) and [VC](https://vc.r
 
 ## Install
 
-Download this repository and move files `release/likely.js` and 
+Download this repository and move files `release/likely.js` and
 `release/likely.css` to desired directory.
 
 ## Setup
@@ -14,7 +14,7 @@ After you've installed Likely, you need to setup it.
 
 Just include files named `likely.css` and `likely.js`.
 
-Then you'll need to create HTML container with `likely` class and list desired 
+Then you'll need to create HTML container with `likely` class and list desired
 social networks in child divs:
 
 ```html
@@ -56,12 +56,13 @@ You can set some options on Likely button set via `data-*` attributes:
 * `data-url` – URL to share and load counters for
 * `data-title` – Page title
 * `data-twitter` – Optional page title for twitter
+* `data-smart` – Enables smart buttons order in mobile view. Last clicked button will go first
 
 There's also social network specific options.
 
 ### Twitter
 
-You can set `data-via` attribute on Twitter button to insert username mention 
+You can set `data-via` attribute on Twitter button to insert username mention
 of this user:
 
 ```html
