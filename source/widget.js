@@ -13,8 +13,6 @@ var services = require('./services'),
  * @param {Object} options
  */
 function Likely(container, options) {
-    console.log(container.dataset.smart);
-
     this.isSmartOrder = container.dataset.smart !== undefined ? true : false;
     this.container = container;
     this.options   = options;
