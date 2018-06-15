@@ -5,22 +5,22 @@ $borderRadius = 3px
 $mobileOffset = 15px
 
 $buttonSize = {
-    mobile: 32px,
-    desktop: 24px
+    mobile: 30px,
+    desktop: 25px
 }
 
 $buttonPadding = {
     mobile: 8px,
-    desktop: 8px
+    desktop: 10px
 }
 
 $buttonMargin = {
-    mobile: 6px,
+    mobile: 5px,
     desktop: 4px
 }
 
 $iconSize = {
-    mobile: 16px,
+    mobile: 14px,
     desktop: 14px
 }
 
@@ -83,11 +83,11 @@ $mq = {
                     order: 1
 
             @media $mq.desktop
-                min-width: $buttonSize.desktop + 2px
+                min-width: $buttonSize.desktop + 12px
                 height: $buttonSize.desktop
                 padding: 0 $buttonPadding.desktop
                 margin-right: $buttonMargin.desktop
-                line-height: @height - 0.5px
+                line-height: @height
 
                 &:first-child
                     margin-left: 0
@@ -103,10 +103,6 @@ $mq = {
                     display: none
 
             &--more
-                .likely__icon
-                    svg
-                        transition: all 0.08s ease-in-out
-
                 &.active
                     .likely__icon
                         svg
@@ -209,7 +205,6 @@ $mq = {
 .likely
     visibility: hidden
     opacity: 0
-    transition: opacity 0.08s ease-in-out
 
     &__widget
         font-family 'Roboto', 'Helvetica Neue', 'Arial', sans-serif
