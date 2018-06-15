@@ -1,42 +1,43 @@
 # Likely
 
 The social sharing buttons that aren’t shabby.
-Fork was made for using on [TJournal](https://tjournal.ru) and [VC](https://vc.ru)
+Fork was made for using on [TJ](https://tjournal.ru), [vc.ru](https://vc.ru) and [DTF](https://dtf.ru) sites.
 
 ## Install
 
-Download this repository and move files `release/likely.js` and
-`release/likely.css` to desired directory.
+```
+npm i cmtt-likely
+```
+
+Or include files `likely.css` and `likely.js` from `./release` folder.
 
 ## Setup
 
-After you've installed Likely, you need to setup it.
+Library looks for containers with `likely` classname, so pick social services you need and put them in the container.
 
-Just include files named `likely.css` and `likely.js`.
-
-Then you'll need to create HTML container with `likely` class and list desired
-social networks in child divs:
+Default setup:
 
 ```html
 <div class="likely">
-    <div class="twitter">Твитнуть</div>
-    <div class="facebook">Поделиться</div>
-    <div class="vkontakte">Поделиться</div>
+    <div class="vkontakte">Share</div>
+    <div class="facebook">Like</div>
+    <div class="twitter">Tweet</div>
     <div class="gplus"></div>
     <div class="odnoklassniki"></div>
     <div class="pocket"></div>
     <div class="telegram"></div>
     <div class="whatsapp"></div>
     <div class="viber"></div>
+    <div class="email"></div>
     <div class="more"></div>
 </div>
 ```
 
-Likely supports following social networks and mobile messengers:
+Supported social services:
 
-* `twitter` – Twitter
-* `facebook` – Facebook
 * `vkontakte` – VK
+* `facebook` – Facebook
+* `twitter` – Twitter
 * `gplus` - Google+
 * `odnoklassniki` – Odnoklassniki
 * `pocket` – Pocket
@@ -44,26 +45,30 @@ Likely supports following social networks and mobile messengers:
 * `whatsapp` – WhatsApp
 * `viber` – Viber
 
+* `email` – sends link and page title via default email client
+
+* `more` — include this to show extra buttons in mobile view.
+
 ### Styling
 
-For custom styles add class `.likely--custom` to `.likely` container and then write your own css.
-Add `.likely--desktop` if buttons set should not be visible on small screens.
+Before using custom styles add class `.likely--custom` to `.likely` container.
+
+Add `.likely--desktop` to hide container in mobile view.
+
+Add `.likely--no-counters` to hide share counters.
 
 ## Options
 
-You can set some options on Likely button set via `data-*` attributes:
+You can change some options via `data-*` attributes:
 
-* `data-url` – URL to share and load counters for
-* `data-title` – Page title
-* `data-twitter` – Optional page title for twitter
-* `data-smart` – Enables smart buttons order in mobile view. Last clicked button will go first
-
-There's also social network specific options.
+* `data-url` – page url
+* `data-title` – page title
+* `data-twitter` – optional page title for twitter
+* `data-smart` – enables smart buttons order in mobile view. Last clicked button will go first
 
 ### Twitter
 
-You can set `data-via` attribute on Twitter button to insert username mention
-of this user:
+You can set `data-via` attribute on Twitter button to add username mention:
 
 ```html
 <div class="twitter" data-via="tjournal">Tweet</div>
@@ -71,4 +76,4 @@ of this user:
 
 ## Demo
 
-You can see Likely in action on this [page](http://valerypatorius.github.io/Likely/).
+[https://valerypatorius.github.io/Likely/](https://valerypatorius.github.io/Likely/)
