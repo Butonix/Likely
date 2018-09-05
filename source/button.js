@@ -43,7 +43,7 @@ LikelyButton.prototype = {
      * @param {Object} options
      */
     update: function (options) {
-        var className = '.' + config.prefix + 'counter';
+        var className = '.' + config.prefix + 'counter',
             counters  = dom.findAll(className, this.widget);
 
         utils.extend(this.options, utils.merge({forceUpdate: false}, options));
